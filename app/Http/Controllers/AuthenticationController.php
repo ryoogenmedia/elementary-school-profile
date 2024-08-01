@@ -25,7 +25,7 @@ class AuthenticationController extends Controller
         ]);
 
         if(Auth::attempt($data, $request->input('remember'))){
-            Session::flash('danger',[
+            Session::flash('success',[
                 'title' => 'Berhasil.',
                 'message' => 'Anda berhasil masuk ke aplikasi.',
             ]);
@@ -39,5 +39,16 @@ class AuthenticationController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+
+        Session::flash('success',[
+            'title' => 'Berhasil.',
+            'message' => 'Anda berhasil keluar dari aplikasi.',
+        ]);
+
+        return redirect()->route('home.frontend');
     }
 }

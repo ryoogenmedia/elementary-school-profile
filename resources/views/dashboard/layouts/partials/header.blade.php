@@ -25,7 +25,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6>{{ auth()->user()->username }}</h6>
-                        <span>Admin</span>
+                        <span>admin</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -54,11 +54,17 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"
+                            class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Keluar</span>
                         </a>
                     </li>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </ul>
             </li>
         </ul>
