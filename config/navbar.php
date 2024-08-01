@@ -17,7 +17,7 @@ return [
         'is-active' => 'home',
     ],
     [
-        'title' => 'Kegiatan',
+        'title' => 'Ekstrakulikuler',
         'route-name' => 'home',
         'is-active' => 'home',
     ],

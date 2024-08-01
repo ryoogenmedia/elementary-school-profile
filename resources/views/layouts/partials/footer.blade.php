@@ -5,8 +5,8 @@
             <div class="col-sm-6 col-lg-3 footer-widget">
                 <div class="about-widget">
                     <img src="img/logo-light.png" alt>
-                    <p>orem ipsum dolor sit amet, consecter adipiscing elite. Donec minos varius, viverra justo ut,
-                        aliquet nisl.</p>
+                    <p>Cerdas, Berdaya saing dan berakhlak mulia. Merupakan visi misi kami untuk mendidik anak-anak
+                        kami.</p>
                     <div class="social pt-1">
                         <a href><i class="fa fa-twitter-square"></i></a>
                         <a href><i class="fa fa-facebook-square"></i></a>
@@ -21,24 +21,20 @@
                 <h6 class="fw-title">USEFUL LINK</h6>
                 <div class="dobule-link">
                     <ul>
-                        <li><a href>Home</a></li>
-                        <li><a href>About us</a></li>
-                        <li><a href>Services</a></li>
-                        <li><a href>Events</a></li>
-                        <li><a href>Features</a></li>
+                        @foreach (config('navbar') as $nav)
+                            <li><a href>{{ $nav['title'] }}</a></li>
+                        @endforeach
                     </ul>
                     <ul>
-                        <li><a href>Policy</a></li>
-                        <li><a href>Term</a></li>
-                        <li><a href>Help</a></li>
-                        <li><a href>FAQs</a></li>
-                        <li><a href>Site map</a></li>
+                        <li><a href="https://www.kemdikbud.go.id/">Kemendibud</a></li>
+                        <li><a href="https://raporpendidikan.kemdikbud.go.id/login">Rapor</a></li>
+                        <li><a href="https://dikti.kemdikbud.go.id/">Dikti</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-sm-6 col-lg-3 footer-widget">
-                <h6 class="fw-title">RECENT POST</h6>
+                <h6 class="fw-title">POSTINGAN TERATAS</h6>
                 <ul class="recent-post">
                     <li>
                         <p>Snackable study:How to break <br> up your master's degree</p>
@@ -52,22 +48,20 @@
             </div>
 
             <div class="col-sm-6 col-lg-3 footer-widget">
-                <h6 class="fw-title">CONTACT</h6>
+                <h6 class="fw-title">Kontak</h6>
                 <ul class="contact">
                     <li>
-                        <p><i class="fa fa-map-marker"></i> 40 Baria Street 133/2, NewYork City,US</p>
+                        <p><i class="fa fa-map-marker"></i> Jl Pajaiang, Kec Biringkanaya, Kota Makassar</p>
                     </li>
                     <li>
-                        <p><i class="fa fa-phone"></i> (+88) 111 555 666</p>
+                        <p><i class="fa fa-phone"></i> 085777839928281</p>
                     </li>
                     <li>
-                        <p><i class="fa fa-envelope"></i> <a
-                                href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__"
-                                data-cfemail="076e6961686362627564756266736e716247606a666e6b2964686a">[email&#160;protected]</a>
+                        <p><i class="fa fa-envelope"></i> <a href="ryoogencomunity@gmail.com">sdnpajaiang@gmail.com</a>
                         </p>
                     </li>
                     <li>
-                        <p><i class="fa fa-clock-o"></i> Monday - Friday, 08:00AM - 06:00 PM</p>
+                        <p><i class="fa fa-clock-o"></i> Senin - Minggu, jam 8.00 - 16.30</p>
                     </li>
                 </ul>
             </div>
@@ -81,8 +75,8 @@
                 <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                 <script>
                     document.write(new Date().getFullYear());
-                </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                    aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+                </script> SDN INP PAJAIANG | UNITAMA <i class="fa fa-heart-o" aria-hidden="true"></i>
+                powered by <a href="https://github.com/ryoogenmedia" target="_blank">Ryoogen Media</a>
             </p>
         </div>
     </div>
