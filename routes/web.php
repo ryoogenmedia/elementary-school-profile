@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -25,6 +26,15 @@ Route::middleware('auth')->group(function(){
     Route::prefix('/profil')->name('profile.')->controller(ProfileController::class)->group(function(){
         Route::get('/', 'index')->name('index');
         Route::put('/{id}', 'update')->name('update');
+    });
+
+    Route::prefix('/berita')->name('news.')->controller(NewsController::class)->group(function(){
+        Route::get('/', 'index')->name('index'); // Halaman index
+        Route::get('/tambah', 'create')->name('create'); // Halaman create
+        Route::post('/', 'store')->name('store'); // Post create
+        Route::get('/sunting/{id}', 'edit')->name('edit'); // Halaman edit
+        Route::put('/{id}', 'update')->name('update'); // Update berita
+        Route::delete('/{id}', 'destroy')->name('delete'); // Hapus berita
     });
 });
 

@@ -12,7 +12,7 @@
         @endisset
 
         <textarea class="form-control {{ $formControlClass ?? '' }} @error($name) is-invalid @enderror" id="{{ $name }}"
-            name="{{ $name }}" rows="{{ $rows ?? '5' }}" {{ $attributes }}></textarea>
+            name="{{ $name }}" rows="{{ $rows ?? '5' }}" {{ $attributes }}>{{ $value ?? '' }}</textarea>
 
         @error($name)
             <div class="invalid-feedback">
