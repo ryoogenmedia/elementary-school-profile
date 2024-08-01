@@ -21,7 +21,17 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'avatar',
     ];
+
+    // GET AVATAR URL
+    public function avatarUrl()
+    {
+        return $this->avatar
+            ? url('storage/' . $this->avatar)
+            : 'https://gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=1024';
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

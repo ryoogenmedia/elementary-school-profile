@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function(){
 Route::middleware('guest')->group(function(){
     Route::get('/login', [AuthenticationController::class,'index'])->name('view.login');
     Route::post('/login', [AuthenticationController::class,'login'])->name('login');
+    Route::post('/logout', [AuthenticationController::class,'logout'])->name('logout');
+
     Route::get('/', [LandingPageController::class,'index'])->name('home.frontend');
 });
 
