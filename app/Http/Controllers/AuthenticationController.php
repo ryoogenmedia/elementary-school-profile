@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Password;
 
 class AuthenticationController extends Controller
@@ -25,16 +24,18 @@ class AuthenticationController extends Controller
         ]);
 
         if(Auth::attempt($data, $request->input('remember'))){
-            Session::flash('success',[
-                'title' => 'Berhasil.',
-                'message' => 'Anda berhasil masuk ke aplikasi.',
+            session()->flash('alert', [
+                'type' => 'success',
+                'message' => 'Berhasil.',
+                'detail' => "ada berhasil masuk ke aplikasi.",
             ]);
 
             return redirect()->route('home.backend');
         }else{
-            Session::flash('danger',[
-                'title' => 'Gagal.',
-                'message' => 'Ada yang salah, cek kembali data login anda.',
+            session()->flash('alert', [
+                'type' => 'danger',
+                'message' => 'Gagal.',
+                'detail' => "ada yang salah, periksa kembali data login anda.",
             ]);
 
             return redirect()->back();
@@ -44,9 +45,10 @@ class AuthenticationController extends Controller
     public function logout(){
         Auth::logout();
 
-        Session::flash('success',[
-            'title' => 'Berhasil.',
-            'message' => 'Anda berhasil keluar dari aplikasi.',
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Berhasil.',
+            'detail' => "anda berhasil keluar dari aplikasi.",
         ]);
 
         return redirect()->route('home.frontend');
