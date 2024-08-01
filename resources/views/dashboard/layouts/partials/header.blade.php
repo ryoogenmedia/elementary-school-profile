@@ -18,7 +18,8 @@
 
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ auth()->user()->avatarUrl() }}" alt="Profile" class="rounded-circle">
+                    <img style="width: 35px; height: 60px; object-fit: cover; overflow: hidden;"
+                        src="{{ auth()->user()->avatarUrl() }}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->username }}</span>
                 </a>
 
