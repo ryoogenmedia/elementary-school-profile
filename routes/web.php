@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('home.backend');
 });
+
+Route::middleware('guest')->group(function(){
+    Route::get('/login', [AuthenticationController::class,'index'])->name('view.login');
+    Route::post('/login', [AuthenticationController::class,'login'])->name('login');
+    Route::get('/', [LandingPageController::class,'index'])->name('home.frontend');
+});
+
