@@ -10,12 +10,12 @@
         <div class="header-info">
             <div class="hf-item">
                 <i class="fa fa-clock-o"></i>
-                <p><span>Working time:</span>Monday - Friday: 08 AM - 06 PM</p>
+                <p><span>Kegiatan Sekolah : </span>Senin - Minggu, Jam 8.00 - 16.30</p>
             </div>
 
             <div class="hf-item">
                 <i class="fa fa-map-marker"></i>
-                <p><span>Find us:</span>40 Baria Street 133/2, New York City, US</p>
+                <p><span>Alamat : </span>Jl Pajaiang, Kec Biringkanaya, Kota Makassar, Indonesia</p>
             </div>
         </div>
     </div>

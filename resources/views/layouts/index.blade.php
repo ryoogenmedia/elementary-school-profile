@@ -82,9 +82,9 @@
 </head>
 
 <body>
-    <div id="preloder">
+    {{-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> --}}
 
     @include('layouts.partials.header')
     @include('layouts.partials.navbar')
