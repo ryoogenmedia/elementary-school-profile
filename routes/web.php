@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function(){
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('home.backend');
+    Route::get('/beranda', [DashboardController::class,'index'])->name('home.backend');
     Route::post('/logout', [AuthenticationController::class,'logout'])->name('logout');
+
+    Route::prefix('/profil')->name('profile.')->controller(ProfileController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::put('/{id}', 'update')->name('update');
+    });
 });
 
 Route::middleware('guest')->group(function(){
