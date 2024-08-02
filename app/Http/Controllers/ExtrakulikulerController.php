@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carousel;
+use App\Models\Extrakulikuler;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class CarouselController extends Controller
+class ExtrakulikulerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        $rows = Carousel::all();
+        $rows = Extrakulikuler::all();
 
-        return view('dashboard.carousel.index', compact('rows'));
+        return view('dashboard.extrakulikuler.index', compact('rows'));
     }
 
     /**
@@ -30,7 +30,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        return view('dashboard.carousel.create');
+        return view('dashboard.extrakulikuler.create');
     }
 
     /**
@@ -42,28 +42,31 @@ class CarouselController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required','string','min:2','max:255', ],
-            'pretitle' => ['required','string','min:2','max:255', ],
+            'name' => ['required','string','min:2','max:255', 'unique:extrakulikulers,slug'],
             'description' => ['required','string','min:10'],
-            'image' => ['required','image'],
+            'image' => ['required','image','max:2048'],
         ]);
 
-        $title = $request->input('title');
-        $pretitle = $request->input('pretitle');
+        $name = $request->input('name');
         $description = $request->input('description');
 
         try{
             DB::beginTransaction();
 
-            $news = Carousel::create([
-                'title' => $title,
-                'pretitle' => $pretitle,
+            $extrakulikuler = Extrakulikuler::create([
+                'name' => $name,
                 'description' => $description,
             ]);
 
             if($request->file('image')){
-                $news->update([
+                $extrakulikuler->update([
                     'image' => $request->file('image')->store('news-image','public'),
+                ]);
+            }
+
+            if($name){
+                $extrakulikuler->update([
+                    'slug' => Str::slug($name),
                 ]);
             }
 
@@ -72,19 +75,19 @@ class CarouselController extends Controller
             session()->flash('alert', [
                 'type' => 'danger',
                 'message' => 'Gagal.',
-                'detail' => "Data slider gagal ditambah.",
+                'detail' => "Data ekstrakulikuler gagal ditambah.",
             ]);
 
-            return redirect()->route('carousel.create');
+            return redirect()->route('extrakulikuler.create');
         }
 
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil.',
-            'detail' => "Data slider berhasil ditambah.",
+            'detail' => "Data ekstrakulikuler berhasil ditambah.",
         ]);
 
-        return redirect()->route('carousel.index');
+        return redirect()->route('extrakulikuler.index');
     }
 
     /**
@@ -106,9 +109,9 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        $carousel = Carousel::query()->where('id', $id)->first();
+        $extrakulikuler = Extrakulikuler::query()->where('id', $id)->first();
 
-        return view('dashboard.carousel.edit', compact('carousel'));
+        return view('dashboard.extrakulikuler.edit', compact('extrakulikuler'));
     }
 
     /**
@@ -120,35 +123,38 @@ class CarouselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $news = Carousel::query()->where('id', $id)->first();
+        $extrakulikuler = Extrakulikuler::query()->where('id', $id)->first();
 
         $request->validate([
-            'title' => ['required','string','min:2','max:255'],
-            'pretitle' => ['required','string','min:2','max:255'],
+            'name' => ['required','string','min:2','max:255', 'unique:extrakulikulers,slug,' . $extrakulikuler->id],
             'description' => ['required','string','min:10'],
-            'image' => ['nullable','image'],
+            'image' => ['nullable','image','max:2048'],
         ]);
 
-        $title = $request->input('title');
-        $pretitle = $request->input('title');
+        $name = $request->input('name');
         $description = $request->input('description');
 
         try{
             DB::beginTransaction();
 
-            $news->update([
-                'title' => $title,
-                'pretitle' => $pretitle,
+            $extrakulikuler->update([
+                'name' => $name,
                 'description' => $description,
             ]);
 
             if($request->file('image')){
-                if($news->image){
-                    File::delete(public_path('storage/' . $news->image));
+                if($extrakulikuler->image){
+                    File::delete(public_path('storage/' . $extrakulikuler->image));
                 }
 
-                $news->update([
-                    'image' => $request->file('image')->store('news-image','public'),
+                $extrakulikuler->update([
+                    'image' => $request->file('image')->store('kulikuler-image','public'),
+                ]);
+            }
+
+            if($name){
+                $extrakulikuler->update([
+                    'slug' => Str::slug($name),
                 ]);
             }
 
@@ -157,19 +163,19 @@ class CarouselController extends Controller
             session()->flash('alert', [
                 'type' => 'danger',
                 'message' => 'Gagal.',
-                'detail' => "Data slider gagal disunting.",
+                'detail' => "Data extrakulikuler gagal disunting.",
             ]);
 
-            return redirect()->route('carousel.create');
+            return redirect()->route('extrakulikuler.create');
         }
 
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil.',
-            'detail' => "Data berita berhasil disunting.",
+            'detail' => "Data extrakulikuler berhasil disunting.",
         ]);
 
-        return redirect()->route('carousel.index');
+        return redirect()->route('extrakulikuler.index');
     }
 
     /**
@@ -180,15 +186,15 @@ class CarouselController extends Controller
      */
     public function destroy($id)
     {
-        $news = Carousel::query()->where('id', $id)->first();
-        $news->delete();
+        $extrakulikuler = Extrakulikuler::query()->where('id', $id)->first();
+        $extrakulikuler->delete();
 
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Berhasil.',
-            'detail' => "Data slider berhasil dihapus.",
+            'detail' => "Data extrakulikuler berhasil dihapus.",
         ]);
 
-        return redirect()->route('carousel.index');
+        return redirect()->route('extrakulikuler.index');
     }
 }

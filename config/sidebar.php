@@ -21,4 +21,11 @@ return [
         'route-name' => 'carousel.index',
         'is-active' => 'carousel*',
     ],
+
+    [
+        'title' => 'Extrakulikuler',
+        'icon' => 'grid',
+        'route-name' => 'extrakulikuler.index',
+        'is-active' => 'extrakulikuler*',
+    ],
 ];

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExtrakulikulerController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +40,15 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::prefix('/carousel')->name('carousel.')->controller(CarouselController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/sunting/{id}', 'edit')->name('edit');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('delete');
+    });
+
+    Route::prefix('/extrakulikuler')->name('extrakulikuler.')->controller(ExtrakulikulerController::class)->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/tambah', 'create')->name('create');
         Route::post('/', 'store')->name('store');
