@@ -28,4 +28,11 @@ return [
         'route-name' => 'extrakulikuler.index',
         'is-active' => 'extrakulikuler*',
     ],
+
+    [
+        'title' => 'Kontak',
+        'icon' => 'grid',
+        'route-name' => 'contact.index',
+        'is-active' => 'contact*',
+    ],
 ];

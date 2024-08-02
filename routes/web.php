@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExtrakulikulerController;
 use App\Http\Controllers\LandingPageController;
@@ -55,6 +56,11 @@ Route::middleware('auth')->group(function(){
         Route::get('/sunting/{id}', 'edit')->name('edit');
         Route::put('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('delete');
+    });
+
+    Route::prefix('/kontak')->name('contact.')->controller(ContactController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
     });
 });
 
