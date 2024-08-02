@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NewsController;
@@ -29,12 +30,21 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::prefix('/berita')->name('news.')->controller(NewsController::class)->group(function(){
-        Route::get('/', 'index')->name('index'); // Halaman index
-        Route::get('/tambah', 'create')->name('create'); // Halaman create
-        Route::post('/', 'store')->name('store'); // Post create
-        Route::get('/sunting/{id}', 'edit')->name('edit'); // Halaman edit
-        Route::put('/{id}', 'update')->name('update'); // Update berita
-        Route::delete('/{id}', 'destroy')->name('delete'); // Hapus berita
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/sunting/{id}', 'edit')->name('edit');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('delete');
+    });
+
+    Route::prefix('/carousel')->name('carousel.')->controller(CarouselController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/sunting/{id}', 'edit')->name('edit');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('delete');
     });
 });
 

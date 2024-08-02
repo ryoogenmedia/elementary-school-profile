@@ -6,7 +6,6 @@ return [
         'icon' => 'grid',
         'route-name' => 'home.backend',
         'is-active' => 'home.backend',
-        'description' => 'Untuk melihat ringkasan aplikasi.',
     ],
 
     [
@@ -14,6 +13,12 @@ return [
         'icon' => 'grid',
         'route-name' => 'news.index',
         'is-active' => 'news*',
-        'description' => 'Untuk melihat ringkasan aplikasi.',
+    ],
+
+    [
+        'title' => 'Slider',
+        'icon' => 'grid',
+        'route-name' => 'carousel.index',
+        'is-active' => 'carousel*',
     ],
 ];
