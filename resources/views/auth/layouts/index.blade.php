@@ -8,6 +8,7 @@
     <title>SDN INP PAJAIANG | LOGIN</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <link href="{{ asset('backend/img/favicon.ico') }}" rel="icon">
 
     <link href="{{ asset('backend/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('backend/img/apple-touch-icon.png') }}" rel="apple-touch-icon">

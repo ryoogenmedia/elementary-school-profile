@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('home.backend') }}" class="logo d-flex align-items-center">
-            <img src="{{ asset('backend/img/logo.png') }}" alt="">
+            <img src="{{ asset('backend/img/logo-sd.png') }}" alt="">
             <span class="d-none d-lg-block">SDN INP PAJAIANG</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
